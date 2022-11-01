@@ -107,6 +107,15 @@ class AssetMixinView(
     ):
     queryset = Asset.objects.all()
     serializer_class = AssetSerializer
+
+    ### 
+    ### Assets should be accesible for every member of the Hedge Fund
+
+    authentication_classes = []
+    permission_classes = []
+    
+    ### 
+    
     lookup_field = 'pk'
 
     def get(self, request, *args, **kwargs):

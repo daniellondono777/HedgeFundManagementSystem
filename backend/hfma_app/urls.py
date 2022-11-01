@@ -1,7 +1,11 @@
 from django.urls import path
 from hfma_app import views
+from rest_framework.authtoken.views import obtain_auth_token
 
 urlpatterns = [
+
+    path('auth/', obtain_auth_token),
+
     # ControlPanel 
     path('controlpanel/<int:pk>', views.get_control_panel),
     path('controlpanel/', views.get_control_panels),
