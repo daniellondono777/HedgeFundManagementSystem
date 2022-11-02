@@ -115,7 +115,7 @@ class AssetMixinView(
     permission_classes = []
     
     ### 
-    
+
     lookup_field = 'pk'
 
     def get(self, request, *args, **kwargs):
@@ -151,19 +151,25 @@ def get_control_panels(request):
     data = ControlPanelSerializer(queryset, many=True).data
     return Response(data)
 
-@api_view(['POST'])
-def create_control_panel(request):
-    data = json.loads(request.body)
-    serializer = ControlPanelSerializer(data=data)
-    if serializer.is_valid(raise_exception=True):
-        cp = ControlPanel.objects.create(
-            name = serializer.validated_data.get('name'),
-            equity = serializer.validated_data.get('equity'),
-            quarter_performance = serializer.validated_data.get('quarter_performance'),
-            daily_performance = serializer.validated_data.get('daily_performance'),
-        )
-        cp.save()
-        return Response(serializer.data)
+
+class ControlPanelCreateAPIView(generics.CreateAPIView):
+    serializer_class = ControlPanelSerializer
+
+# @api_view(['POST'])
+# def create_control_panel(request):
+#     data = json.loads(request.body)
+#     print(data)
+#     serializer = ControlPanelSerializer(data=data)
+#     if serializer.is_valid(raise_exception=True):
+#         cp = ControlPanel.objects.create(
+#             name = serializer.validated_data.get('name'),
+#             equity = serializer.validated_data.get('equity'),
+#             quarter_performance = serializer.validated_data.get('quarter_performance'),
+#             daily_performance = serializer.validated_data.get('daily_performance'),
+#             managed_assets = serializer.validated_data.get('managed_assets')
+#         )
+#         cp.save()
+#         return Response(serializer.data)
 
 @api_view(['PUT'])
 def update_control_panel(request, pk):
@@ -173,7 +179,8 @@ def update_control_panel(request, pk):
         name = json_data.get('name'),
         equity = json_data.get('equity'),
         quarter_performance = json_data.get('quarter_performance'),
-        daily_performance = json_data.get('daily_performance')
+        daily_performance = json_data.get('daily_performance'),
+        managed_assets = json_data.get('managed_assets')
     )
     return Response(ControlPanelSerializer(cp.first(), many=False).data)
 

@@ -9,7 +9,7 @@ urlpatterns = [
     # ControlPanel 
     path('controlpanel/<int:pk>', views.get_control_panel),
     path('controlpanel/', views.get_control_panels),
-    path('controlpanel/create/', views.create_control_panel),
+    path('controlpanel/create/', views.ControlPanelCreateAPIView.as_view()),
     path('controlpanel/<int:pk>/update/', views.update_control_panel),
     path('controlpanel/<int:pk>/delete/', views.delete_control_panel),
 

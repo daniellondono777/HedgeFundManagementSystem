@@ -40,6 +40,15 @@ class Security(models.TextChoices):
 ##################### ENTITIES ###############################################
 ##############################################################################
 
+class Asset(models.Model):
+    name = models.TextField(max_length=20)
+    type = models.CharField(max_length=2, choices=Security.choices, default=Security.OTHER_ABS)
+    quantity_usd = models.FloatField()
+    issued_date = models.DateField()
+    active_status = models.BooleanField(default=True)
+
+    def __str__(self) -> str:
+        return "Asset {}".format(id)
 
 class ControlPanel(models.Model):
     def _formated_date() -> str:
@@ -50,17 +59,7 @@ class ControlPanel(models.Model):
     equity = models.FloatField(editable=True)
     quarter_performance = models.FloatField(editable=True)
     daily_performance = models.FloatField(editable=True)
-
-class Asset(models.Model):
-    name = models.TextField(max_length=20)
-    type = models.CharField(max_length=2, choices=Security.choices, default=Security.OTHER_ABS)
-    quantity_usd = models.FloatField()
-    issued_date = models.DateField()
-    active_status = models.BooleanField(default=True)
-    control_panel = models.ForeignKey(ControlPanel, on_delete=models.SET_NULL, null=True)
-
-    def __str__(self) -> str:
-        return "Asset {}".format(id)
+    managed_assets = models.ManyToManyField(Asset,default=None, blank=True)
 
 class Employee(models.Model):
     name = models.TextField(max_length=30)
