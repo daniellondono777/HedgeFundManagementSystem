@@ -45,7 +45,7 @@ class Asset(models.Model):
     type = models.CharField(max_length=2, choices=Security.choices, default=Security.OTHER_ABS)
     quantity_usd = models.FloatField()
     issued_date = models.DateField()
-    active_status = models.BooleanField(default=True)
+    active_status = models.BooleanField(default=True) ## Revisa el chat de WA
 
     def __str__(self) -> str:
         return "Asset {}".format(id)
