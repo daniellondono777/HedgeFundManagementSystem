@@ -1,6 +1,10 @@
 from doctest import COMPARISON_FLAGS
+from email.policy import default
+from unicodedata import name
 from django.db import models
 import datetime
+from .asset_inspector import AssetInspector
+import json
 
 ##############################################################################
 ##################### ENUMERATIONS ###########################################
@@ -45,7 +49,15 @@ class Asset(models.Model):
     type = models.CharField(max_length=2, choices=Security.choices, default=Security.OTHER_ABS)
     quantity_usd = models.FloatField()
     issued_date = models.DateField()
-    active_status = models.BooleanField(default=True) ## Revisa el chat de WA
+    active_status = models.BooleanField(default=True)
+    financial_indicators = models.JSONField()
+    financial_news = models.JSONField()
+    def save(self, *args, **kwargs):
+        self.financial_indicators = AssetInspector(self.name).financial_indicator_getter()
+        self.financial_news = AssetInspector(self.name).news_grouper()
+        super(Asset, self).save()
+    
+    
 
     def __str__(self) -> str:
         return "Asset {}".format(id)

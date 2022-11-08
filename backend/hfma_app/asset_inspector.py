@@ -26,7 +26,7 @@ class AssetInspector:
             json_return = json.dumps(dict(zip(concept, isf)), indent=4)
             return json_return
         except:
-            raise(Exception)
+            return None
     
     def news_grouper(self):
         values = []
@@ -42,7 +42,7 @@ class AssetInspector:
                 if link is not None:
                     values.append(link.get('href'))
         except:
-            raise(Exception)
+            return None
         news_datetime = values[::3]
         news_time = []
         news_date = []
