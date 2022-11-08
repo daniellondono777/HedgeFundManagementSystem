@@ -52,7 +52,7 @@ This project was developed using Python3.10.4. You can download it from here: ht
   -username: hatem
   -password: H4t.3m78!
   ```
-  Please note these credentials are needed when performing CRUD operations, if you don't want to use them, go to ```setting.py``` and comment the default and authentication classes.  
+  Please note these credentials are needed when performing CRUD operations, if you don't want to use them, go to ```setting.py``` and comment the default and authentication classes. Also, there are some models that don't have permissions to be accessed, you can change this in the Django Admin Panel. 
 
 
 
@@ -61,7 +61,9 @@ This project was developed using Python3.10.4. You can download it from here: ht
 
 You may use the CLI to perform CRUD operations on the API as follows, or simply by requesting using your browser or creating a new client. 
 
-![Sample usage](https://media.giphy.com/media/vFKqnCdLPNOKc/giphy.gif)
+[<img src="https://github.com/daniellondono777/HedgeFundManagementSystem/blob/main/usage.gif" width="300"/>](usage.gif)
+
+Note that you can close the prompt with ```Ctrl+C```
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -79,8 +81,6 @@ Distributed under the MIT License.
 <!-- CONTACT -->
 ## Contact
 
-Your Name - [@twitter_handle](https://twitter.com/twitter_handle) - email@email_client.com
-
-Project Link: [https://github.com/github_username/repo_name](https://github.com/github_username/repo_name)
+Daniel Londoño - [@LinkedIn](https://www.linkedin.com/in/daniel-londo%C3%B1o-60189a132/)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
